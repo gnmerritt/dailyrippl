@@ -10,11 +10,17 @@ python rippl/manage.py migrate
 python rippl/manage.py runserver
 ```
 
+## running tests
+
+```
+tox
+```
+
 ## architecture
 
 Probably something like this
 
-![architecture](rippl architecture.jpg)
+![architecture](architecture.jpg)
 
 [Django for web](https://docs.djangoproject.com)
 
