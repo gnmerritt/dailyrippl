@@ -3,6 +3,7 @@ from legislature.models import State, District, Representative, Term
 
 
 class RepresentativeImport(object):
+    """Importer for data from the unitedstates/congress-legislators repo"""
     def load_data(self, filename):
         self.file = filename
         with open(filename, 'r') as contents:
@@ -45,7 +46,7 @@ class RepresentativeImport(object):
     def import_terms(self, db_rep, data):
         terms = data.get('terms', [])
         for term in terms:
-            district = self.get_district(term)
+            district = self.import_district(term)
             self.get_term(term, db_rep, district)
 
     def get_term(self, term, rep, district):
@@ -59,7 +60,7 @@ class RepresentativeImport(object):
         })
         return db_term
 
-    def get_district(self, term):
+    def import_district(self, term):
         state, _ = State.objects.get_or_create(abbr=term['state'])
         district_num = term.get('district', -1)
         district, _ = District.objects.get_or_create(
