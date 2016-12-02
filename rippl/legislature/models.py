@@ -24,12 +24,12 @@ class Representative(models.Model):
     last = models.CharField(max_length=30)
     # personal info
     gender = models.CharField(max_length=1)
-    birthday = models.DateField()
-    religion = models.CharField(max_length=80)
+    birthday = models.DateField(null=True)
+    religion = models.CharField(max_length=80, null=True)
     # identifiers in other systems
-    google_id = models.CharField(max_length=20)
+    google_id = models.CharField(max_length=20, null=True)
     bioguide_id = models.CharField(max_length=20, db_index=True)
-    wikipedia_id = models.CharField(max_length=60)
+    wikipedia_id = models.CharField(max_length=60, null=True)
 
     def __str__(self):
         return "{} {} ({})".format(self.first, self.last, self.bioguide_id)

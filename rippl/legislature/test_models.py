@@ -1,3 +1,5 @@
+from datetime import datetime, timedelta
+
 from django.test import TestCase
 from django.core.exceptions import ValidationError
 
@@ -13,3 +15,14 @@ class StateTest(TestCase):
     def test_abbr_length(self):
         with self.assertRaises(ValidationError):
             models.State(abbr='too long').full_clean()
+
+
+class TermTest(TestCase):
+    def test_is_active(self):
+        past = datetime.now() - timedelta(days=5)
+        term = models.Term(end=past.date())
+        self.assertFalse(term.is_active())
+
+        future = datetime.now() + timedelta(days=1)
+        active_term = models.Term(end=future.date())
+        self.assertTrue(active_term.is_active())
