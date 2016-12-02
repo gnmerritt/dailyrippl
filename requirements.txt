@@ -1,3 +1,4 @@
 Django==1.10.3
 tox==2.5.0
 flake8
+pyyaml==3.12
