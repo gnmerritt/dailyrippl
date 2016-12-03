@@ -6,6 +6,9 @@ class State(models.Model):
     name = models.CharField(db_index=True, max_length=80)
     abbr = models.CharField(max_length=3)
 
+    class Meta(object):
+        ordering = ["name"]
+
     def __str__(self):
         return self.name
 
@@ -14,8 +17,16 @@ class District(models.Model):
     state = models.ForeignKey(State, on_delete=models.CASCADE)
     number = models.IntegerField()
 
+    class Meta(object):
+        ordering = ["state__name", "number"]
+
     def __str__(self):
-        desc = "at large" if self.number == 0 else self.number
+        if self.number == -1:
+            desc = "senate"
+        elif self.number == 0:
+            desc = "at large"
+        else:
+            desc = self.number
         return "{} {}".format(self.state.abbr, desc)
 
 
@@ -55,6 +66,9 @@ class Term(models.Model):
     district = models.ForeignKey(District, on_delete=models.CASCADE)
     chamber = models.CharField(max_length=3, choices=BODIES)
     party = models.CharField(max_length=1, choices=PARTIES)
+
+    class Meta(object):
+        ordering = ["-end"]
 
     def __str__(self):
         return "{}-{}, {}-{}" \

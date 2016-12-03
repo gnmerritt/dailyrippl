@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h2>Representatives</h2>
+  <ul>
+      {% for rep in object_list %}
+          <li><a href="{% url 'rep' rep.id %}">{{ rep.first }} {{ rep.last }}</a></li>
+      {% endfor %}
+  </ul>
+{% endblock %}

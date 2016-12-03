@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>{{ rep.first }} {{ rep.last }}</h1>
+
+  <h2>Terms</h2>
+  <table class="table table-bordered table-striped">
+    <tr>
+      <th>Started</th>
+      <th>Ended</th>
+      <th>Party</th>
+      <th>Chamber</th>
+    </tr>
+    {% for term in terms %}
+    <tr {% if term.is_active %}class="active"{% endif %}>
+      <td>{{ term.start|date }}</td>
+      <td>{{ term.end|date }}</td>
+      <td>{{ term.party }}</td>
+      <td>{{ term.chamber }}</td>
+    </tr>
+    {% endfor %}
+  </table>
+{% endblock %}
