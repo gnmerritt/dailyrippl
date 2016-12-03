@@ -15,6 +15,9 @@ exports.config =
         precision: 8
     copycat:
       "fonts": ["node_modules/bootstrap-sass/assets/fonts/bootstrap"]
+    eslint:
+      pattern: /^ui\/.*\.js?x?$/
+      warnOnly: false
   paths:
     public: 'rippl/questing/static/'
     watched: ['ui']
