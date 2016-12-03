@@ -1,6 +1,14 @@
 # django databases
 **/db.sqlite3
 
+# npm install stuff
+node_modules/*
+
+# UI build objects
+rippl/questing/static/fonts/
+rippl/questing/static/app.*
+rippl/questing/static/vendor.*
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
