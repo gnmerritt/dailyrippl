@@ -7,6 +7,10 @@ DEBUG_TEMPLATE = False
 SECRET_KEY = os.environ['SECRET_KEY']
 ALLOWED_HOSTS = [".gnmerritt.net", "*vendetta", "*scarab"]
 
+INSTALLED_APPS += [
+    'gunicorn',
+]
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
