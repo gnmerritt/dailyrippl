@@ -7,7 +7,7 @@ DEBUG_TEMPLATE = False
 SECRET_KEY = os.environ['SECRET_KEY']
 ALLOWED_HOSTS = [".gnmerritt.net", "*vendetta", "*scarab"]
 
-INSTALLED_APPS += [
+INSTALLED_APPS += [  # noqa F405
     'gunicorn',
 ]
 
