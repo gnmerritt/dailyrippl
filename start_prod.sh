@@ -10,4 +10,5 @@ cd rippl || exit
 gunicorn --env DJANGO_SETTINGS_MODULE=rippl.prod_settings \
     -b ${HOST_IP}:9000 \
     -w $JOBS \
+    --pid rippl-gunicorn.pid \
     rippl.wsgi

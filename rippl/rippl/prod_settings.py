@@ -11,6 +11,10 @@ INSTALLED_APPS += [  # noqa F405
     'gunicorn',
 ]
 
+static_dir = os.environ.get('STATIC_ROOT', None)
+if static_dir is not None:
+    STATIC_ROOT = static_dir
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
