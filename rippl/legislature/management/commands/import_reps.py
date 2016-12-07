@@ -2,7 +2,8 @@ from django.core.management.base import BaseCommand
 
 from legislature.importer.states import StateImporter
 from legislature.importer.representatives import RepresentativeImport
-from legislature.models import Representative
+from legislature.importer.active_terms import ActiveTermMaterialize
+from legislature.models import Representative, ActiveTerm
 
 
 class Command(BaseCommand):
@@ -26,3 +27,6 @@ class Command(BaseCommand):
         importer.build()
         self.success("representative import succeeded")
         self.success("DB contains %d reps" % Representative.objects.count())
+        terms = ActiveTermMaterialize()
+        terms.build()
+        self.success("Found %d active terms" % ActiveTerm.objects.count())

@@ -78,6 +78,11 @@ class Term(models.Model):
         return self.end > date.today()
 
 
+class ActiveTerm(models.Model):
+    rep = models.ForeignKey(Representative, on_delete=models.CASCADE)
+    term = models.ForeignKey(Term, on_delete=models.CASCADE)
+
+
 class ContactInfo(models.Model):
     NETWORKS = (
         ('FB', 'Facebook'),
