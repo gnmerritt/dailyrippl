@@ -15,6 +15,8 @@ static_dir = os.environ.get('STATIC_ROOT', None)
 if static_dir is not None:
     STATIC_ROOT = static_dir
 
+MIDDLEWARE.remove('querycount.middleware.QueryCountMiddleware')
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
