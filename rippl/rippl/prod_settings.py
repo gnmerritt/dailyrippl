@@ -15,7 +15,7 @@ static_dir = os.environ.get('STATIC_ROOT', None)
 if static_dir is not None:
     STATIC_ROOT = static_dir
 
-MIDDLEWARE.remove('querycount.middleware.QueryCountMiddleware')
+MIDDLEWARE.remove('querycount.middleware.QueryCountMiddleware')  # noqa F405
 
 DATABASES = {
     'default': {
