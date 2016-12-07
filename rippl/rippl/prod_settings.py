@@ -29,6 +29,37 @@ CONN_MAX_AGE = 30
 
 SLACK_API_KEY = os.environ['SLACK_API_KEY']
 
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'filters': {
+        'require_debug_false': {
+            '()': 'django.utils.log.RequireDebugFalse'
+        }
+    },
+    'handlers': {
+        'slack-error': {
+            'level': 'ERROR',
+            'api_key': SLACK_API_KEY,
+            'class': 'slacker_log_handler.SlackerLogHandler',
+            'channel': '#rippl-logs'
+        },
+        'slack-info': {
+            'level': 'INFO',
+            'api_key': SLACK_API_KEY,
+            'class': 'slacker_log_handler.SlackerLogHandler',
+            'channel': '#rippl-logs'
+        },
+    },
+    'loggers': {
+        'django.request': {
+            'handlers': ['slack-error', 'slack-info'],
+            'level': 'ERROR',
+            'propagate': True,
+        },
+    }
+}
+
 CSRF_COOKIE_SECURE = True
 CSRF_COOKIE_HTTPONLY = True
 SESSION_COOKIE_SECURE = True
