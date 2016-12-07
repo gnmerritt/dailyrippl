@@ -53,7 +53,7 @@ LOGGING = {
     },
     'loggers': {
         'django.request': {
-            'handlers': ['slack-error', 'slack-info'],
+            'handlers': ['slack-error'],
             'level': 'ERROR',
             'propagate': True,
         },
