@@ -11,7 +11,7 @@
       <th>Party</th>
       <th>Chamber</th>
     </tr>
-    {% for term in terms %}
+    {% for term in rep.terms.all %}
     <tr {% if term.is_active %}class="active"{% endif %}>
       <td>{{ term.start|date }}</td>
       <td>{{ term.end|date }}</td>

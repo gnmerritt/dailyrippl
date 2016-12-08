@@ -60,7 +60,8 @@ class Term(models.Model):
         ('G', 'Green'),
         ('L', 'Libertarian'),
     )
-    rep = models.ForeignKey(Representative, on_delete=models.CASCADE)
+    rep = models.ForeignKey(
+        Representative, related_name='terms', on_delete=models.CASCADE)
     start = models.DateField()
     end = models.DateField()
     district = models.ForeignKey(District, on_delete=models.CASCADE)
