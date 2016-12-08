@@ -1,6 +1,7 @@
 Django==1.10.4
 django-extensions==1.7.5
 django-querycount==0.5.0
+django-registration==2.2
 flake8==3.2.1
 gunicorn==19.6.0
 httpie==0.9.6
