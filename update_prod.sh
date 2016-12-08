@@ -5,7 +5,7 @@ git pull
 
 echo "Installing deps"
 source /home/rippl/venvs/rippl/bin/activate # TODO: make this less snowflake
-pip install -r prod-requirements.txt
+pip install -r requirements.txt
 # TODO: install npm so we can build frontend
 # npm install
 # brunch build
