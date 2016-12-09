@@ -16,13 +16,14 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     'legislature',
     'questing',
+    'captcha',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'django_extensions'
+    'django_extensions',
 ]
 
 MIDDLEWARE = [
@@ -106,3 +107,8 @@ STATICFILES_DIR = [
     os.path.join(BASE_DIR, "static"),
 ]
 STATIC_URL = '/static/'
+
+# reCaptcha configuration
+NOCAPTCHA = True
+RECAPTCHA_PUBLIC_KEY = '6LelZg0UAAAAALVbqZv5hJ5Ax0rzWT0hMZkr_MFp'
+RECAPTCHA_PRIVATE_KEY = 'MyRecaptchaPrivateKey456'

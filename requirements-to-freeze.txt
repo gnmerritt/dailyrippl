@@ -2,6 +2,7 @@
 # https://www.kennethreitz.org/essays/a-better-pip-workflow
 Django
 django-extensions==1.7.5
+django-recaptcha
 django-registration
 django-querycount
 flake8
