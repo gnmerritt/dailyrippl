@@ -61,6 +61,11 @@ LOGGING = {
             'level': 'ERROR',
             'propagate': True,
         },
+        'rippl.general': {
+            'handlers': ['slack-info'],
+            'level': 'INFO',
+            'propagate': True,
+        }
     }
 }
 
