@@ -3,7 +3,7 @@ from django.contrib.auth import get_user_model
 from registration.backends.simple.views import RegistrationView
 from registration.forms import RegistrationFormUniqueEmail
 
-from rippl.logging import logger
+from rippl.logging import slack as logger
 
 User = get_user_model()
 
@@ -19,5 +19,5 @@ class RecaptchaRegView(RegistrationView):
 
     def register(self, form):
         username = form.cleaned_data.get(User.USERNAME_FIELD)
-        logger.info("New user '{}' just registered".format(username))
+        logger.info("New user `{}` just registered".format(username))
         return super().register(form)

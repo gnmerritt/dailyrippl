@@ -1,3 +1,3 @@
 import logging
 
-logger = logging.getLogger('rippl.general')
+slack = logging.getLogger('rippl.general')

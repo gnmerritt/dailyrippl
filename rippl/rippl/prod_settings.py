@@ -43,12 +43,15 @@ LOGGING = {
     },
     'handlers': {
         'slack-error': {
+            'username': 'rippl django logs',
             'level': 'ERROR',
             'api_key': SLACK_API_KEY,
             'class': 'slacker_log_handler.SlackerLogHandler',
             'channel': '#rippl-logs'
         },
         'slack-info': {
+            'username': 'rippl django logs',
+            'icon_emoji': 'droplet',
             'level': 'INFO',
             'api_key': SLACK_API_KEY,
             'class': 'slacker_log_handler.SlackerLogHandler',
