@@ -9,6 +9,13 @@ in a separate directory
 git clone https://github.com/unitedstates/congress-legislators
 ```
 
+prereqs
+```
+brew install yarn
+brew install pyenv-virtualenvwrapper
+mkvirtualenv rippl -p python3.5
+```
+
 in here
 ```
 pip install -r requirements.txt
