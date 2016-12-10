@@ -15,7 +15,7 @@ pip install -r requirements.txt
 python rippl/manage.py migrate
 python rippl/manage.py import_reps <path to legislators-current.yaml>
 
-npm install
+yarn install
 brunch build # can use brunch watch for live reloading
 
 python rippl/manage.py runserver
