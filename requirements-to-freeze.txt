@@ -7,6 +7,7 @@ django-registration
 django-querycount
 flake8
 gunicorn==19.6.0
+httmock
 httpie
 psycopg2==2.6.2
 pyyaml
