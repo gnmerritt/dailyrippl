@@ -11,6 +11,10 @@ urlpatterns = [
     url(r'^accounts/', include('registration.backends.simple.urls')),
 
     url(r'^$', TemplateView.as_view(template_name='index.html')),
+    url(
+        r'^mission_statement',
+        TemplateView.as_view(template_name='mission_statement.html'),
+    ),
 
     url(r'^legislature/', include('legislature.urls')),
 ]
