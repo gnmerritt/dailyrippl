@@ -14,6 +14,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'bills',
     'legislature',
     'questing',
     'captcha',
