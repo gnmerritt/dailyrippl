@@ -16,5 +16,5 @@ urlpatterns = [
         TemplateView.as_view(template_name='mission_statement.html'),
     ),
 
-    url(r'^legislature/', include('legislature.urls')),
+    url(r'^legislature/', include('legislature.urls', namespace='leg')),
 ]
