@@ -28,13 +28,13 @@
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav">
           <li><a href="/causes">causes</a></li>
-          <li><a href="/rippl">do something</a></li>
-          <li><a href="/bills">bills</a></li>
-          <li><a href="{% url 'leg:reps' %}">representatives</a></li>
+          <li><a href="/rippl">get involved</a></li>
+          <li><a href="/bills">upcoming bills</a></li>
+          <li {% if "/reps" in request.path %}class="active"{% endif %}><a href="{% url 'leg:reps' %}">representatives</a></li>
         </ul>
 
         <ul class="nav navbar-nav navbar-right">
-          <li><a href="#">you</a></li>
+          <li {% if "/profile" in request.path %}class="active"{% endif %}><a href="{% url 'profile' %}">you</a></li>
         </ul>
       </div>
     </div>
