@@ -1,15 +1,23 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { Provider } from 'react-redux';
+import { render } from 'react-dom';
+
+import store from '../app/store';
+
+import CongressionalDistrict from './CongressionalDistrict';
 
 function ProfileApp() {
   return (
     <div>
-      Hello, profile app
+      <CongressionalDistrict />
     </div>
   );
 }
 
-ReactDOM.render(
-  <ProfileApp />,
+// TODO: abstract this store nonsense out somewhere
+render(
+  <Provider store={store} >
+    <ProfileApp />
+  </Provider>,
   document.getElementById('profile-app'),
 );
