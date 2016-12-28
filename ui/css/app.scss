@@ -1,2 +1,14 @@
-$icon-font-path: "/fonts/";
+$icon-font-path: "/static/fonts/";
 @import "bootstrap";
+
+.navbar {
+  .navbar-nav {
+    display: inline-block;
+    float: none;
+    vertical-align: top;
+  }
+
+  .navbar-collapse {
+    text-align: center;
+  }
+}

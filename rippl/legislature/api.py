@@ -1,11 +1,14 @@
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpResponseBadRequest
 
 from legislature.sunlight.district import DistrictMatcher
 
 
 def find_district(request):
-    latitude = request.GET['lat']
-    longitude = request.GET['lng']
+    try:
+        latitude = request.GET['lat']
+        longitude = request.GET['lng']
+    except KeyError:
+        return HttpResponseBadRequest('Need both "lat" and "lng" query params')
     matcher = DistrictMatcher()
     district = matcher.find_district(latitude, longitude)
     return JsonResponse({

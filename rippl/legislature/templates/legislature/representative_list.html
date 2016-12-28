@@ -14,7 +14,7 @@
     </tr>
     {% for at in reps %}
       <tr>
-        <td><a href="{% url 'rep' at.rep.id %}">{{ at.rep.first }} {{ at.rep.last }}</a></td>
+        <td><a href="{% url 'leg:rep' at.rep.id %}">{{ at.rep.first }} {{ at.rep.last }}</a></td>
         <td>{{ at.term.district.state.name }}</td>
         <td>{{ at.term.district }}</td>
         <td>{{ at.term.get_party_display }}</td>
