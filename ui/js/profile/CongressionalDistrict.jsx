@@ -10,9 +10,13 @@ import { queryDistrict } from './ProfileActions';
 const CongressionalDistrict = (props) => {
   const d = props.district;
   if (!d.district) {
+    const loading = d.loading;
     return (
-      <Button onClick={props.queryDistrict}>
-        Find my congressional district
+      <Button
+        onClick={loading ? null : props.queryDistrict}
+        disabled={loading}
+      >
+        {loading ? 'Loading...' : 'Find my congressional district'}
       </Button>
     );
   }
