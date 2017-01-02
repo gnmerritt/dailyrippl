@@ -87,7 +87,9 @@ def _create_or_update_bill(bill_dict):
     # create/add topics from keywords
     keywords = details.get('keywords') or []
     for kw in keywords:
-        topic, _ = Topic.objects.get_or_create(name__iexact=kw)
+        topic_defaults = {'name': kw, 'desc': ''}
+        topic, _ = Topic.objects.get_or_create(name__iexact=kw,
+                                               defaults=topic_defaults)
         bill.topics.add(topic)
 
     # TODO(carolyn): attach corresponding sponsor rep.

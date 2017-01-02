@@ -15,7 +15,7 @@ class Topic(models.Model):
     desc = models.TextField()
 
     def __str__(self):
-        return "{}: {}...".format(self.name, self.desc[:15])
+        return self.name
 
 
 class Quest(models.Model):
