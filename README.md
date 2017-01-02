@@ -21,6 +21,7 @@ in here
 pip install -r requirements.txt
 python rippl/manage.py migrate
 python rippl/manage.py import_reps <path to legislators-current.yaml>
+python rippl/manage.py import_bills --start_date "2016-12-01"
 
 yarn install
 brunch build # can use brunch watch for live reloading
