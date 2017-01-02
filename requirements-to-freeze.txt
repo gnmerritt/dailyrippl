@@ -1,11 +1,13 @@
 # Put human readable requirements in here, 'pip freeze > requirements.txt'
 # https://www.kennethreitz.org/essays/a-better-pip-workflow
 Django
+django-click
 django-extensions==1.7.5
 django-recaptcha
 django-registration
 django-querycount
 flake8
+funcy==1.7.2
 gunicorn==19.6.0
 httmock
 httpie
