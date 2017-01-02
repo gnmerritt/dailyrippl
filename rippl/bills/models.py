@@ -14,9 +14,10 @@ class Bill(models.Model):
     url = models.CharField(max_length=127, default='', help_text='Permalink with more info')
 
     CHAMBERS = (
-        ('S', 'Senate'),
+        ('S', 'Senate'),  # TODO(carolyn): match to Representative field
         ('H', 'House'),
     )
+
     chamber = models.CharField(max_length=3, choices=CHAMBERS, null=True)
     sponsor = models.ForeignKey(Representative, on_delete=models.SET_NULL, null=True)
 
