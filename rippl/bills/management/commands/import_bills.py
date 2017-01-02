@@ -1,11 +1,11 @@
 import djclick as click
-from funcy import get_in, first
+from funcy import first
 import os
 import requests
 
 from bills.models import Bill
 from questing.models import Topic
-from legislature.models import Representative
+
 
 BASE_URL = 'https://congress.api.sunlightfoundation.com/{}'
 SUNLIGHT_API_KEY = os.getenv('SUNLIGHT_API_KEY')
@@ -41,11 +41,11 @@ def _get_upcoming_bills(start_date):
     if start_date:
         filters['legislative_day__gte'] = start_date
     return _paged_sunlight_request(bills_url, filters)
-    
+
 
 def _get_bill_details(bill_id):
     url = BASE_URL.format('bills')
-    fields = ['popular_title', 
+    fields = ['popular_title',
               'official_title',
               'summary',
               'keywords',
@@ -66,7 +66,7 @@ def _create_or_update_bill(bill_dict):
     details = _get_bill_details(bill_dict['bill_id'])
 
     bill_chamber = bill_dict.get('chamber', '')
-    if bill_chamber == 'senate': 
+    if bill_chamber == 'senate':
         chamber = 'S'
     elif bill_chamber == 'house':
         chamber = 'H'
@@ -99,4 +99,3 @@ def import_upcoming(start_date):
     # Get upcoming bills from the Sunlight API and update/insert models
     for bill_dict in _get_upcoming_bills(start_date):
         _create_or_update_bill(bill_dict)
-

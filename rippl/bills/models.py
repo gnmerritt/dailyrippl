@@ -11,7 +11,8 @@ class Bill(models.Model):
     official_title = models.TextField(default='')
     popular_title = models.CharField(max_length=127, default='')
     summary = models.TextField(default='')
-    url = models.CharField(max_length=127, default='', help_text='Permalink with more info')
+    url = models.CharField(max_length=127, default='',
+                           help_text='Permalink with more info')
 
     CHAMBERS = (
         ('S', 'Senate'),  # TODO(carolyn): match to Representative field
@@ -19,6 +20,7 @@ class Bill(models.Model):
     )
 
     chamber = models.CharField(max_length=3, choices=CHAMBERS, null=True)
-    sponsor = models.ForeignKey(Representative, on_delete=models.SET_NULL, null=True)
+    sponsor = models.ForeignKey(Representative, on_delete=models.SET_NULL,
+                                null=True)
 
     topics = models.ManyToManyField(Topic)
