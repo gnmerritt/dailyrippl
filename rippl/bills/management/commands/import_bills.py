@@ -5,6 +5,7 @@ import requests
 
 from bills.models import Bill
 from questing.models import Topic
+from legislature.models import Representative
 
 
 BASE_URL = 'https://congress.api.sunlightfoundation.com/{}'
@@ -44,6 +45,7 @@ def _get_upcoming_bills(start_date):
 
 
 def _get_bill_details(bill_id):
+    """Get details about a bill"""
     url = BASE_URL.format('bills')
     fields = ['popular_title',
               'official_title',
@@ -92,12 +94,20 @@ def _create_or_update_bill(bill_dict):
                                                defaults=topic_defaults)
         bill.topics.add(topic)
 
-    # TODO(carolyn): attach corresponding sponsor rep.
+    # attach corresponding sponsor rep.
+    bioguide_id = details.get('sponsor_id')
+    if bioguide_id:
+        try:
+            sponsor = Representative.objects.get(bioguide_id=bioguide_id)
+            bill.sponsor = sponsor
+            bill.save()
+        except Representative.DoesNotExist:
+            pass
 
 
 @click.command()
 @click.option('--start_date', default=None)
 def import_upcoming(start_date):
-    # Get upcoming bills from the Sunlight API and update/insert models
+    """Get upcoming bills from the Sunlight API and update/insert models"""
     for bill_dict in _get_upcoming_bills(start_date):
         _create_or_update_bill(bill_dict)
