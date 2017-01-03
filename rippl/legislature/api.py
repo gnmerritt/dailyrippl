@@ -15,5 +15,6 @@ def find_district(request):
         'state': district.state.abbr,
         'state_name': district.state.name,
         'district': district.number,
+        'district_id': district.id,
         'str': str(district)
     })
