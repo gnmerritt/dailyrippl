@@ -1,9 +1,10 @@
 import { combineReducers } from 'redux';
 
-import { district } from '../profile/ProfileReducer';
+import { district, representatives } from '../profile/ProfileReducer';
 
 const ripplApp = combineReducers({
   district,
+  representatives,
 });
 
 export default ripplApp;
