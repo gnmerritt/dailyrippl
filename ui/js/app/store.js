@@ -3,7 +3,10 @@ import ReduxThunk from 'redux-thunk';
 
 import reducer from './reducers';
 
-export default createStore(
-  reducer,
-  applyMiddleware(ReduxThunk),
-);
+export default function buildStore(initialData) {
+  return createStore(
+    reducer,
+    initialData,
+    applyMiddleware(ReduxThunk),
+  );
+}
