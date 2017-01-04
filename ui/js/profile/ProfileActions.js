@@ -18,11 +18,27 @@ function positionHandler(dispatch, geoPosition) {
   });
 }
 
-// eslint-disable-next-line import/prefer-default-export
+/**
+ * Invokes the geolocation API to get the users lat/lng
+ */
 export const queryDistrict = () =>
   (dispatch) => {
     dispatch(setDistrict({ loading: true }));
     const afterPosition = _.partial(positionHandler, dispatch);
     // TODO: handle errors and stuff?
     navigator.geolocation.getCurrentPosition(afterPosition);
+  };
+
+/**
+ * Loads district information given a saved district id
+ */
+export const fetchDistrict = districtId =>
+  (dispatch) => {
+    dispatch(setDistrict({ loading: true }));
+    $.ajax({
+      url: uri(`/legislature/district/${districtId}`),
+      type: 'GET',
+      success: district => dispatch(setDistrict(district)),
+      error: () => dispatch(setDistrict({})),
+    });
   };

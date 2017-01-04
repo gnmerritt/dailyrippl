@@ -1,8 +1,12 @@
 from django.http import JsonResponse, HttpResponseBadRequest
+from django.shortcuts import get_object_or_404
+
 
 from legislature.sunlight.district import DistrictMatcher
-from legislature.queries.representatives import RepresentativeFetcher
 from legislature.google_civics import get_reps_for_address
+from legislature.queries.representatives import RepresentativeFetcher
+from legislature.queries.districts import DistrictSerializer
+from legislature.models import District
 
 
 def find_district(request):
@@ -14,13 +18,12 @@ def find_district(request):
         return HttpResponseBadRequest('Need both "lat" and "lng" query params')
     matcher = DistrictMatcher()
     district = matcher.find_district(latitude, longitude)
-    return JsonResponse({
-        'state': district.state.abbr,
-        'state_name': district.state.name,
-        'district': district.number,
-        'district_id': district.id,
-        'str': str(district)
-    })
+    return JsonResponse(DistrictSerializer(district).data)
+
+
+def fetch_district(request, district_id):
+    district = get_object_or_404(District, pk=district_id)
+    return JsonResponse(DistrictSerializer(district).data)
 
 
 def fetch_representative(request, district_id):

@@ -9,7 +9,7 @@ import { queryDistrict } from './ProfileActions';
  */
 const CongressionalDistrict = (props) => {
   const d = props.district;
-  if (!d.district) {
+  if (!d.id) {
     const loading = d.loading;
     return (
       <Button
@@ -22,17 +22,19 @@ const CongressionalDistrict = (props) => {
   }
   return (
     <div>
-      Your congressional district is {d.state_name} {d.district}
+      Your congressional district is {d.state.name} {d.number}
     </div>
   );
 };
 
 CongressionalDistrict.propTypes = {
   district: PropTypes.shape({
-    state: PropTypes.string,
-    state_name: PropTypes.string,
-    district: PropTypes.number,
-    str: PropTypes.string,
+    state: PropTypes.shape({
+      name: PropTypes.string.isRequired,
+      abbr: PropTypes.string.isRequired,
+    }),
+    id: PropTypes.number,
+    number: PropTypes.number,
   }).isRequired,
   queryDistrict: PropTypes.func.isRequired,
 };
