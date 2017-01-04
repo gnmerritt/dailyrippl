@@ -2,6 +2,7 @@ from django.http import JsonResponse, HttpResponseBadRequest
 
 from legislature.sunlight.district import DistrictMatcher
 from legislature.queries.representatives import RepresentativeFetcher
+from legislature.google_civics import get_reps_for_address
 
 
 def find_district(request):
@@ -26,3 +27,16 @@ def fetch_representative(request, district_id):
     """Returns a map of chambers of congress to reps for a district"""
     reps = RepresentativeFetcher()
     return JsonResponse(reps.fetch(district_id))
+
+
+def fetch_address_reps(request):
+    """Return a list with contact info for representatives of an address"""
+    address = request.GET.get('address')
+    if not address:
+        return HttpResponseBadRequest('Need "address" query param')
+
+    contacts = get_reps_for_address(address)
+    if not contacts:
+        return HttpResponseBadRequest(
+            'Could not fetch representatives for address "{}"'.format(address))
+    return JsonResponse(contacts)
