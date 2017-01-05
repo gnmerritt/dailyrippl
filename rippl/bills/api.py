@@ -4,6 +4,9 @@ from bills.models import Bill
 
 
 class BillSerializer(serializers.ModelSerializer):
+
+    topics = serializers.SlugRelatedField(many=True, read_only=True, slug_field='name')
+
     class Meta:
         model = Bill
         fields = '__all__'
