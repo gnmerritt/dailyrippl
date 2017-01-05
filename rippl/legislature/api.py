@@ -39,4 +39,4 @@ def fetch_address_reps(request):
     if not contacts:
         return HttpResponseBadRequest(
             'Could not fetch representatives for address "{}"'.format(address))
-    return JsonResponse(contacts)
+    return JsonResponse({'contacts': contacts})
