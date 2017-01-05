@@ -10,7 +10,8 @@ class SponsorRelatedField(serializers.RelatedField):
 
 class BillSerializer(serializers.ModelSerializer):
 
-    topics = serializers.SlugRelatedField(many=True, read_only=True, slug_field='name')
+    topics = serializers.SlugRelatedField(
+        many=True, read_only=True, slug_field='name')
     sponsor = SponsorRelatedField(read_only=True)
 
     class Meta:
