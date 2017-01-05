@@ -10,5 +10,5 @@ class TopicSerializer(serializers.ModelSerializer):
 
 
 class TopicViewSet(viewsets.ModelViewSet):
-    queryset = Topic.objects.all()
+    queryset = Topic.objects.exclude(name__exact='')
     serializer_class = TopicSerializer
