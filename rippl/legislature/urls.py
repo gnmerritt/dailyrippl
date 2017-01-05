@@ -9,4 +9,5 @@ urlpatterns = [
     url(r'^reps/district/(?P<district_id>\d+)/?$', api.fetch_representative),
     url(r'^reps/contact/?$', api.fetch_address_reps),
     url(r'^district/?$', api.find_district, name='find_district'),
+    url(r'^district/(?P<district_id>\d+)/?$', api.fetch_district),
 ]
