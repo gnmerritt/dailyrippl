@@ -21,7 +21,7 @@ urlpatterns = [
         name='profile'
     ),
 
-    url(r'^legislature/', include('legislature.urls', namespace='leg')),
-    url(r'^rippl/', include('questing.urls', namespace='rippl')),
-    url(r'^laws/', include('bills.urls', namespace='laws')),
+    url(r'^api/v1/legislature/', include('legislature.urls', namespace='leg')),
+    url(r'^api/v1/rippl/', include('questing.urls', namespace='rippl')),
+    url(r'^api/v1/laws/', include('bills.urls', namespace='laws')),
 ]
