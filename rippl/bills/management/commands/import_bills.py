@@ -89,8 +89,9 @@ def _create_or_update_bill(bill_dict):
     # create/add topics from keywords
     keywords = details.get('keywords') or []
     for kw in keywords:
-        topic_defaults = {'name': kw, 'desc': ''}
-        topic, _ = Topic.objects.get_or_create(name__iexact=kw,
+        name = kw if len(kw) <= 30 else kw[:27] + '...'
+        topic_defaults = {'name': name, 'desc': ''}
+        topic, _ = Topic.objects.get_or_create(name__iexact=name,
                                                defaults=topic_defaults)
         bill.topics.add(topic)
 
