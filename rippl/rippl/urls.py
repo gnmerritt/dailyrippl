@@ -22,4 +22,5 @@ urlpatterns = [
     ),
 
     url(r'^legislature/', include('legislature.urls', namespace='leg')),
+    url(r'^rippl/', include('questing.urls', namespace='rippl')),
 ]
