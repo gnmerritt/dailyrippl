@@ -1,6 +1,7 @@
 from rest_framework import viewsets, serializers
 
 from bills.models import Bill
+from rippl.throttling import BurstRateThrottle, SustainedRateThrottle
 
 
 class BillSerializer(serializers.ModelSerializer):
@@ -10,6 +11,8 @@ class BillSerializer(serializers.ModelSerializer):
 
 
 class BillViewSet(viewsets.ModelViewSet):
+    throttle_classes = (BurstRateThrottle, SustainedRateThrottle)
+
     queryset = Bill.objects \
         .exclude(official_title__isnull=True) \
         .exclude(official_title__exact='')
