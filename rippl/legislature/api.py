@@ -1,4 +1,6 @@
-from rest_framework.decorators import api_view, throttle_classes, permission_classes
+from rest_framework.decorators import (api_view,
+                                       permission_classes,
+                                       throttle_classes)
 from rest_framework import permissions
 
 from django.http import JsonResponse, HttpResponseBadRequest
