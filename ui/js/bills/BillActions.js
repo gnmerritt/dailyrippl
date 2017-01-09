@@ -6,9 +6,11 @@ function setBills(bills) {
 }
 
 // eslint-disable-next-line import/prefer-default-export
-export const fetchBills = (topics = []) =>
-  (dispatch) => {
+export const fetchBills = () =>
+  (dispatch, getState) => {
     dispatch(setBills({ loading: true }));
+    const state = getState();
+    const topics = state.userCauses;
     $.ajax({
       url: uri('laws/bills.json').search({ t: topics }),
       type: 'GET',

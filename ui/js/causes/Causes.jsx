@@ -3,14 +3,16 @@ import { connect } from 'react-redux';
 
 import { fetchCauses } from './CauseActions';
 import { chooseCause } from '../profile/ProfileActions';
+import { fetchBills } from '../bills/BillActions';
 
 const renderCause = (userCauses, chooser) =>
   (cause) => {
     const chosen = userCauses.indexOf(cause.id) > -1;
+    const className = chosen ? 'chosen' : '';
     const onClick = () => chooser(cause.id, !chosen);
     return (
       // eslint-disable-next-line jsx-a11y/no-static-element-interactions
-      <div key={cause.name} onClick={onClick}>
+      <div key={cause.name} onClick={onClick} className={className}>
         {cause.name}
       </div>
     );
@@ -26,7 +28,7 @@ class Causes extends React.Component {
     const causes = this.props.causes || [];
     const userCauses = this.props.userCauses || [];
     return (
-      <div>
+      <div className="causes">
         {causes.map(renderCause(userCauses, this.props.chooseCause))}
       </div>
     );
@@ -49,7 +51,10 @@ const stateToProps = state => ({
 });
 const dispatchToProps = dispatch => ({
   fetchCauses: () => dispatch(fetchCauses()),
-  chooseCause: (cause, chosen) => dispatch(chooseCause(cause, chosen)),
+  chooseCause: (cause, chosen) => {
+    dispatch(chooseCause(cause, chosen));
+    dispatch(fetchBills());
+  },
 });
 
 const ConnectedCauses = connect(

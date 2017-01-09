@@ -12,8 +12,7 @@ const renderBill = bill =>
 
 class Bills extends React.Component {
   componentDidMount() {
-    const userCauses = this.props.userCauses || [];
-    this.props.fetchBills(userCauses);
+    this.props.fetchBills();
   }
 
   render() {
@@ -31,12 +30,10 @@ Bills.propTypes = {
     sunlight_id: PropTypes.string.isRequired,
     official_title: PropTypes.string.isRequired,
   })),
-  userCauses: PropTypes.arrayOf(PropTypes.number),
   fetchBills: PropTypes.func.isRequired,
 };
 
 const stateToProps = state => ({
-  userCauses: state.userCauses,
   bills: state.bills.results,
 });
 const dispatchToProps = dispatch => ({
