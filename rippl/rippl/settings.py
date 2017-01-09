@@ -67,10 +67,15 @@ WSGI_APPLICATION = 'rippl.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'rippl',
+        'USER': 'rippluser',
+        'PASSWORD': os.environ.get('RIPPL_PG_PASS', '12345'),
+        'HOST': 'localhost',
+        'PORT': '',
     }
 }
+CONN_MAX_AGE = 30
 
 
 # Password validation
