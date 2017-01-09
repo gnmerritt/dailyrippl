@@ -17,7 +17,8 @@ class BillViewSet(viewsets.ModelViewSet):
     def get_queryset(self):
         queryset = Bill.objects \
             .exclude(official_title__isnull=True) \
-            .exclude(official_title__exact='')
+            .exclude(official_title__exact='') \
+            .distinct('id')
         topics = self.request.query_params.getlist('t')
         if topics:
             queryset = queryset.filter(topics__in=topics)
