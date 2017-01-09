@@ -11,7 +11,7 @@ These are free to have foreign key dependencies on data in the legislature app.
 
 class Topic(models.Model):
     """A cause/issue that users may care about"""
-    name = models.CharField(db_index=True, max_length=30)
+    name = models.CharField(db_index=True, max_length=60)
     desc = models.TextField()
 
     def __str__(self):
