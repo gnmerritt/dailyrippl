@@ -36,7 +36,7 @@ Bills.propTypes = {
 };
 
 const stateToProps = state => ({
-  userCauses: [], // TODO<Nathan>: wire this
+  userCauses: state.userCauses,
   bills: state.bills.results,
 });
 const dispatchToProps = dispatch => ({

@@ -12,6 +12,7 @@ export function loadState() {
     if (savedState) {
       return {
         district: { id: savedState.district },
+        userCauses: savedState.userCauses,
       };
     }
   } catch (e) {} // eslint-disable-line no-empty
@@ -25,6 +26,7 @@ export function loadState() {
 const saveState = _.debounce((state) => {
   const essentialState = {
     district: state.district.id,
+    userCauses: state.userCauses,
   };
   localStorage.setItem(STATE_KEY, JSON.stringify(essentialState));
 }, 5 * 1000);

@@ -15,3 +15,15 @@ export const representatives = (state = {}, action) => {
       return state;
   }
 };
+
+export const userCauses = (state = [], action) => {
+  switch (action.type) {
+    case 'CHOOSE_CAUSE':
+      if (action.chosen) {
+        return state.concat(action.causeId);
+      }
+      return state.filter(c => c !== action.causeId);
+    default:
+      return state;
+  }
+};
