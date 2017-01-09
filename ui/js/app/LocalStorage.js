@@ -27,7 +27,7 @@ const saveState = _.debounce((state) => {
     district: state.district.id,
   };
   localStorage.setItem(STATE_KEY, JSON.stringify(essentialState));
-}, 5 * 1000, true);
+}, 5 * 1000);
 
 function StateSaverComponent(props) {
   setTimeout(() => saveState(props), 1);
