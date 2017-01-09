@@ -10,15 +10,16 @@ urlpatterns = [
     url(r'^accounts/register/$', RecaptchaRegView.as_view()),
     url(r'^accounts/', include('registration.backends.simple.urls')),
 
-    url(r'^$', TemplateView.as_view(template_name='index.html')),
+    url(r'go', TemplateView.as_view(template_name='app.html'), name='go'),
     url(
-        r'^mission_statement',
+        r'^$',
         TemplateView.as_view(template_name='mission_statement.html'),
+        name='mission',
     ),
     url(
-        r'^profile',
-        TemplateView.as_view(template_name='profile.html'),
-        name='profile'
+        r'^privacy_terms',
+        TemplateView.as_view(template_name='tos.html'),
+        name='tos',
     ),
 
     url(r'^legislature/', include('legislature.urls', namespace='leg')),
