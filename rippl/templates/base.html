@@ -46,8 +46,10 @@
     m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
     })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
     ga('create', 'UA-88412688-1', 'auto');
+    ga('require', 'dnt');
     ga('send', 'pageview');
   </script>
+  <script async src="//storage.googleapis.com/outfox/dnt_min.js"></script>
   <script src="{% static 'vendor.js' %}"></script>
   <script src="{% static 'app.js' %}"></script>
   {% block scripts %}{% endblock %}
