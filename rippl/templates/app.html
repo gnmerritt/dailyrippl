@@ -1,10 +1,12 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block content %}
   <div id="rippl-app"></div>
 {% endblock %}
 
 {% block scripts %}
+  <script src="{% static 'app.js' %}"></script>
   <script>
     require('ui/js/app/App.jsx');
   </script>
