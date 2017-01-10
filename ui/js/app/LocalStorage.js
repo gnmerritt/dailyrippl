@@ -29,7 +29,7 @@ const saveState = _.debounce((state) => {
     userCauses: state.userCauses,
   };
   localStorage.setItem(STATE_KEY, JSON.stringify(essentialState));
-}, 5 * 1000);
+}, 2 * 1000);
 
 function StateSaverComponent(props) {
   setTimeout(() => saveState(props), 1);
