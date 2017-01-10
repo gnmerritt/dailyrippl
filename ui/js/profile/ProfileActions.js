@@ -71,3 +71,14 @@ export const fetchDistrict = districtId =>
       error: () => dispatch(setDistrict({})),
     });
   };
+
+
+//
+// What causes does the user care about?
+//
+
+export const chooseCause = (causeId, chosen) => ({
+  type: 'CHOOSE_CAUSE',
+  causeId,
+  chosen,
+});

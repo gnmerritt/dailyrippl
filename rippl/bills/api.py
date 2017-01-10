@@ -12,8 +12,14 @@ class BillSerializer(serializers.ModelSerializer):
 
 class BillViewSet(viewsets.ModelViewSet):
     throttle_classes = (BurstRateThrottle, SustainedRateThrottle)
-
-    queryset = Bill.objects \
-        .exclude(official_title__isnull=True) \
-        .exclude(official_title__exact='')
     serializer_class = BillSerializer
+
+    def get_queryset(self):
+        queryset = Bill.objects \
+            .exclude(official_title__isnull=True) \
+            .exclude(official_title__exact='') \
+            .distinct('id')
+        topics = self.request.query_params.getlist('t')
+        if topics:
+            queryset = queryset.filter(topics__in=topics)
+        return queryset

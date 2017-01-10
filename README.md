@@ -16,10 +16,18 @@ brew install pyenv-virtualenvwrapper
 mkvirtualenv rippl -p python3.5
 ```
 
+database setup
+```
+brew install postgresql
+brew services start postgresql
+psql -U postgres -h localhost -f scripts/db_setup.sql
+```
+
 in here
 ```
 pip install -r requirements.txt
 python rippl/manage.py migrate
+python rippl/manage.py createsuperuser
 python rippl/manage.py import_reps <path to legislators-current.yaml>
 python rippl/manage.py import_bills --start_date "2016-12-01"
 

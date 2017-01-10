@@ -17,18 +17,6 @@ if static_dir is not None:
 
 MIDDLEWARE.remove('querycount.middleware.QueryCountMiddleware')  # noqa F405
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'rippl',
-        'USER': 'rippluser',
-        'PASSWORD': os.environ['RIPPL_PG_PASS'],
-        'HOST': 'localhost',
-        'PORT': '',
-    }
-}
-CONN_MAX_AGE = 30
-
 RECAPTCHA_PRIVATE_KEY = os.environ['RECAPTCHA_PRIV_KEY']
 SUNLIGHT_KEY = os.environ['SUNLIGHT_KEY']
 
