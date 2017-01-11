@@ -1,15 +1,55 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
+import { Button, Col } from 'react-bootstrap';
 
 import { fetchBills } from './BillActions';
+import RipplModal from '../rippl/RipplModal';
 
-const renderBill = bill =>
-  <div key={bill.sunlight_id}>
-    {bill.official_title}
-    <hr />
-  </div>
-  ;
+export const billShape = PropTypes.shape({
+  sunlight_id: PropTypes.string.isRequired,
+  official_title: PropTypes.string.isRequired,
+});
 
+/**
+ * One row in the list of bills
+ */
+class Bill extends React.Component {
+  constructor(props, context) {
+    super(props, context);
+    this.state = { open: false };
+  }
+
+  render() {
+    const bill = this.props.bill;
+    return (
+      <div key={bill.sunlight_id}>
+        <Col>{bill.official_title}</Col>
+        <Col>
+          <Button
+            onClick={() => this.setState({ open: true })}
+          >
+            Rippl!
+          </Button>
+        </Col>
+        <hr />
+        <RipplModal
+          bill={bill}
+          open={this.state.open}
+          onClose={() => this.setState({ open: false })}
+        />
+      </div>
+    );
+  }
+}
+
+Bill.propTypes = {
+  bill: billShape.isRequired,
+};
+
+/**
+ * The list of bills
+ */
+// eslint-disable-next-line react/no-multi-comp
 class Bills extends React.Component {
   componentDidMount() {
     this.props.fetchBills();
@@ -19,17 +59,14 @@ class Bills extends React.Component {
     const bills = this.props.bills || [];
     return (
       <div>
-        {bills.map(renderBill)}
+        {bills.map(b => <Bill bill={b} key={b.id} />)}
       </div>
     );
   }
 }
 
 Bills.propTypes = {
-  bills: PropTypes.arrayOf(PropTypes.shape({
-    sunlight_id: PropTypes.string.isRequired,
-    official_title: PropTypes.string.isRequired,
-  })),
+  bills: PropTypes.arrayOf(billShape),
   fetchBills: PropTypes.func.isRequired,
 };
 

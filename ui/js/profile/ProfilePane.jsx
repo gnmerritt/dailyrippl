@@ -1,6 +1,7 @@
 import React from 'react';
 import { Row } from 'react-bootstrap';
 
+import ClearProfileButton from './ClearProfileButton';
 import CongressionalDistrict from './CongressionalDistrict';
 import Representatives from './Representatives';
 
@@ -14,6 +15,9 @@ const ProfilePane = () =>
     </Row>
     <Row>
       <Representatives />
+    </Row>
+    <Row>
+      <ClearProfileButton />
     </Row>
   </div>
   ;

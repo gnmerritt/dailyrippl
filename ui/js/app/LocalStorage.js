@@ -31,6 +31,17 @@ const saveState = _.debounce((state) => {
   localStorage.setItem(STATE_KEY, JSON.stringify(essentialState));
 }, 2 * 1000);
 
+/**
+ * Clear local storage and refresh the browser
+ */
+export function destroyState() {
+  localStorage.clear();
+  window.location.reload();
+}
+
+/**
+ * HACK! Call saveState whenever this component is rendered
+ */
 function StateSaverComponent(props) {
   setTimeout(() => saveState(props), 1);
   return props.children;

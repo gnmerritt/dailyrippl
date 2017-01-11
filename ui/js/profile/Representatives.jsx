@@ -3,7 +3,8 @@ import { connect } from 'react-redux';
 
 const renderRep = rep =>
   <div key={rep.bioguide_id}>
-    {rep.first} {rep.last} ({rep.bioguide_id})
+    <div>{rep.first} {rep.last} ({rep.bioguide_id})</div>
+    <div>TODO: phone #</div>
   </div>
   ;
 
@@ -17,7 +18,7 @@ const Representatives = props =>
   </div>
   ;
 
-const repShape = PropTypes.shape({
+export const repShape = PropTypes.shape({
   bioguide_id: PropTypes.string.isRequired,
   first: PropTypes.string.isRequired,
   last: PropTypes.string.isRequired,
