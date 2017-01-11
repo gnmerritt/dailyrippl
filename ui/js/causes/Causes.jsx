@@ -5,6 +5,8 @@ import { fetchCauses } from './CauseActions';
 import { chooseCause } from '../profile/ProfileActions';
 import { fetchBills } from '../bills/BillActions';
 
+import CauseSearch from './CauseSearch';
+
 const renderCause = (userCauses, chooser) =>
   (cause) => {
     const chosen = userCauses.indexOf(cause.id) > -1;
@@ -29,6 +31,7 @@ class Causes extends React.Component {
     const userCauses = this.props.userCauses || [];
     return (
       <div className="causes">
+        <CauseSearch />
         {causes.map(renderCause(userCauses, this.props.chooseCause))}
       </div>
     );
